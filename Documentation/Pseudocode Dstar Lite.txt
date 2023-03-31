@@ -1,0 +1,60 @@
+#D* Lite Pseudocode
+
+#Main procedure
+procedure Main()
+
+	run the Initialize procedure
+	run the ComputeShortestPath procedure
+	while the start node is not equal to the goal node
+		if the g value of the start node is equal to infinity
+			output there is no known path
+		let the current node be the node that has the minimum of its successors c plus g values
+		Scan grid to check if any transition costs changed
+		if any transition costs changed
+			for all nodes affected by the changed transition cost
+				UpdateVertex()
+			ComputeShortestPath()
+
+#Initialize procedure
+procedure Initialize()
+
+	let OpenQueue equal empty list
+	for all nodes in the grid
+		let the rhs and g value of every node equal infinity
+	let the rhs of the goal equal zero
+	calculate the key value of the goal and put the goal in the OpenQueue
+
+#ComputeShortestPath procedure
+procedure ComputeShortestPath()
+
+	while the start node's key value is not the lowest OR the start node is inconsistent
+		let u equal the popped node with the lowest key value
+		if the g value of u is greater than the rhs value of u
+			let the g value of u equal to the rhs value of u
+			for all the predeccessors of u
+				run through UpdateVertex procedure
+		else
+			let the g value of u equal to infinity
+			for all the predeccessors of u and u itself
+				run through UpdateVertex procedure
+
+#UpdateVertex procedure
+procedure UpdateVertex()
+
+	if u is not equal to the goal
+		let the rhs value of u equal to the minimum of the successors' c plus g values
+	if u is in OpenQueue
+		remove u from OpenQueue
+	if the g value of u is not equal to the rhs value of u
+		insert u and its key value into OpenQueue 
+
+#CalculateKey procedure
+procedure CalculateKey(s)
+
+	return the minimum between the g and rhs value
+
+      
+
+
+
+

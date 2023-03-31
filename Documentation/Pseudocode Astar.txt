@@ -1,0 +1,48 @@
+#A* Algorithm Pseudocode
+
+#Set up both the open and closed lists
+let OpenList equal empty list 
+let ClosedList equal empty list 
+
+#Add the start node to the open list
+append StartNode to OpenList and leave its f value equal to zero
+
+#While the end is not reached
+while OpenList has something in it
+
+	#Get the node with the least f value
+	let CurrentNode equal node with least f value
+	remove CurrentNode from OpenList
+	append CurrentNode to ClosedList
+
+	#When finished retrace the steps
+	if CurrentNode is equal to end
+		Backtrack to get path using the parent, grandparent, and so on
+
+	#Create children
+	let CurrentNode's children equal the neighboring nodes
+    
+	#Loop through every child
+	for every child in children list
+
+		#Child is on the closed list
+		if child is in ClosedList
+			continue to next child
+
+		#Set f, g, and h values
+		let child's g value equal CurrentNode's g value plus distance from current to child
+		let child's h value equal distance from child to end
+		let child's f value equal child's g value plus h value
+       				  
+		#Child is already in the open list
+		if child is in OpenList
+	    		if the child's g value is greater than OpenList node's g value
+				continue to next child
+	    		else
+	        		update OpenList node's g value with the child's g value
+				update OpenList node's parent with child's parent
+				continue to next child
+ 	
+        	#Add child to the open list
+        	append child to OpenList
+
